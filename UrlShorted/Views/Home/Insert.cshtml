@@ -1,0 +1,51 @@
+﻿@model BLL.AdditionalModels.UrlMdl
+
+@{
+    ViewBag.Title = "Insert";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="jumbotron">
+    <h1>Cервис по сокращению URL</h1>
+    <br />
+    @if (ViewBag.Message != null)
+    {
+        <p class="text-success">
+            @ViewBag.Message!
+        </p>
+        <br />
+    }
+    <p>Организовать переход по короткому URL с подсчетом переходов!</p>
+    <br />
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div class="form-horizontal">
+            <div class="input-group input-group-lg">
+                <input name="FullUrl" class="form-control w-100" placeholder="vk.com">
+                <span class="input-group-btn">
+                    <button class="btn btn-primary" type="submit">Создать</button>
+                </span>
+            </div>
+            @if (ViewBag.ShortUrl != null)
+            {
+                <div class="col-md-12 row">
+                    Ваше сокрощенный Url:
+                    <strong>
+                        <a class="" href="@ViewBag.ShortUrl">@ViewBag.ShortUrl</a>
+                    </strong>
+                </div>
+            }
+            @if (ViewBag.FullUrl != null)
+            {
+                <div class="col-md-12 row">
+                    Ваше длинный Url:
+                    <strong>
+                        @ViewBag.FullUrl
+                    </strong>
+                </div>
+            }
+        </div>
+    }
+
+</div>

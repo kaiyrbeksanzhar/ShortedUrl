@@ -1,0 +1,47 @@
+﻿@model IEnumerable<BLL.AdditionalModels.UrlMdl>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Добро пожаловать!!!</h1>
+    @if (ViewBag.Message != null)
+    {
+        <p class="text-success">@ViewBag.Message </p>
+    }
+</div>
+
+<div class="container">
+    <h2>Список Url-ов</h2>
+    <p>Список по сокращению URL:</p>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>N</th>
+                <th>Длинный URL</th>
+                <th>Сокращенный URL</th>
+                <th>Дата создания</th>
+                <th>Кол-во переходов</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @{ int i = 1;}
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@(i++)</td>
+                    <td>@item.FullUrl</td>
+                    <td><a href="@item.ShortUrl" target="_blank">@item.ShortUrl</a></td>
+                    <td>@item.CreateDate</td>
+                    <td>@item.ClickCount</td>
+                    <td><a href="/Home/Delete?Id=@item.Id">Удалить</a></td>
+                    <td><a href="/Home/Edit?Id=@item.Id">Редактировать</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
